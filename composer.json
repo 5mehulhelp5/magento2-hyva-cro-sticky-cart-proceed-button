@@ -1,0 +1,16 @@
+{
+  "name": "elgentos/magento2-hyva-cro-sticky-cart-proceed-button",
+  "description": "Change static call to action to a sticky call to action in the mobile cart",
+  "type": "magento2-module",
+  "require": {
+    "magento/framework": "*"
+  },
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Elgentos\\HyvaCROStickyCartProceedButton\\": ""
+    }
+  }
+}
