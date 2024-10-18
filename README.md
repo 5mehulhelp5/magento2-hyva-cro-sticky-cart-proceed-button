@@ -9,6 +9,6 @@ Win ratio for the A/B test for this is 15%, see [Evidoo.io best practice 156](ht
 ## Install
 
 ```
-composer require elgentos/magento2-hyva-cro-purchasing-confidence
+composer require elgentos/magento2-hyva-cro-sticky-cart-proceed-button
 bin/magento set:up
 ```
