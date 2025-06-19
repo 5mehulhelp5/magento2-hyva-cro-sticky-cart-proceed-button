@@ -11,10 +11,13 @@ use Magento\Framework\Escaper;
 
 /** @var Escaper $escaper */
 /** @var Link $block */
+
+if (!$block->isPossibleOnepageCheckout()) {
+    return '';
+}
 ?>
-<?php if ($block->isPossibleOnepageCheckout()): ?>
-    <a @click.prevent.stop="$dispatch('toggle-authentication',
-        {url: '<?= $escaper->escapeHtmlAttr($escaper->escapeUrl($block->getCheckoutUrl())) ?>'});"
+<div x-data="elgentosStickyCartProceedButton">
+    <a @click.prevent.stop="navigateInteract"
         href="<?= $escaper->escapeHtmlAttr($escaper->escapeUrl($block->getCheckoutUrl())) ?>"
         title="<?= $escaper->escapeHtmlAttr(__('Proceed to Checkout')) ?>"
        class="btn btn-primary text-lg font-medium py-4 px-10 fixed bottom-0 left-0 right-0 w-full z-50
@@ -24,4 +27,22 @@ use Magento\Framework\Escaper;
     >
         <?= $escaper->escapeHtml(__('Proceed to Checkout')) ?>
     </a>
-<?php endif ?>
+</div>
+<script>
+    function elgentosStickyCartProceedButton() {
+        return {
+            navigateInteract() {
+                this.$dispatch(
+                    'toggle-authentication',
+                    {
+                        url:
+                            this.$el.href
+                    }
+                );
+            }
+        }
+    }
+    window.addEventListener('alpine:init', () => Alpine.data('elgentosStickyCartProceedButton', elgentosStickyCartProceedButton), {once: true});
+</script>
+<?php $hyvaCsp->registerInlineScript() ?>
+
